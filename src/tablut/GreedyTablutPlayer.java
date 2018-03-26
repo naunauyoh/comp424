@@ -1,12 +1,12 @@
 package tablut;
 
-import java.util.List;
-import java.util.Random;
-
 import boardgame.Move;
 import boardgame.Player;
 import coordinates.Coord;
 import coordinates.Coordinates;
+
+import java.util.List;
+import java.util.Random;
 
 public class GreedyTablutPlayer extends TablutPlayer {
     private Random rand = new Random(1848);

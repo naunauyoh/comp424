@@ -132,3 +132,29 @@
 137,Human,Human,GAMEOVER USER CANCEL UNDECIDED,NOBODY,3,game00137.log,USER CANCEL
 138,Human,Human,GAMEOVER USER CANCEL UNDECIDED,NOBODY,31,game00138.log,USER CANCEL
 139,Human,Human,0,Human,32,game00139.log,
+1,Human,GreedyPlayer,0,Human,7,game00001.log,
+2,RandomPlayer,RandomPlayer,GAMEOVER DRAW,NOBODY,51,game00002.log,
+3,RandomPlayer,RandomPlayer,GAMEOVER DRAW,NOBODY,51,game00003.log,
+4,RandomPlayer,RandomPlayer,GAMEOVER DRAW,NOBODY,51,game00004.log,
+5,RandomPlayer,RandomPlayer,GAMEOVER DRAW,NOBODY,51,game00005.log,
+6,RandomPlayer,RandomPlayer,GAMEOVER DRAW,NOBODY,51,game00006.log,
+7,RandomPlayer,RandomPlayer,GAMEOVER DRAW,NOBODY,51,game00007.log,
+1,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00001.log,
+2,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00002.log,
+3,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00003.log,
+4,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00004.log,
+5,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00005.log,
+6,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00006.log,
+1,GreedyPlayer,Human,0,GreedyPlayer,5,game00001.log,
+2,Human,GreedyPlayer,0,Human,4,game00002.log,
+3,GreedyPlayer,GreedyPlayer,0,GreedyPlayer,5,game00003.log,
+4,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00004.log,TIMEOUT
+5,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00005.log,TIMEOUT
+6,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00006.log,TIMEOUT
+7,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00007.log,TIMEOUT
+8,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00008.log,TIMEOUT
+1,GreedyPlayer,Human,1,Human,8,game00001.log,
+3,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00003.log,TIMEOUT
+4,RandomPlayer,RandomPlayer,1,RandomPlayer,69,game00004.log,TIMEOUT
+1,GreedyPlayer,RandomPlayer,0,GreedyPlayer,11,game00001.log,
+2,RandomPlayer,GreedyPlayer,1,GreedyPlayer,10,game00002.log,

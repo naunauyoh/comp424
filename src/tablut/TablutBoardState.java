@@ -6,14 +6,8 @@ import boardgame.Move;
 import coordinates.Coord;
 import coordinates.Coordinates;
 import coordinates.Coordinates.CoordinateDoesNotExistException;
-import tablut.TablutMove;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class TablutBoardState extends BoardState {
 
@@ -53,7 +47,7 @@ public class TablutBoardState extends BoardState {
     private HashSet<Coord> muscoviteCoords; // we can use hashsets because
     private HashSet<Coord> swedeCoords;
     private Coord kingPosition;
-    private Random rand = new Random(1917);
+    private Random rand = new Random(17071996);
     private int turnPlayer;
     private int turnNumber = 1;
     private int winner = Board.NOBODY;
