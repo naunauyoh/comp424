@@ -92,13 +92,13 @@ public class MyTools {
 
         int newNumberOfOpponentPieces = tbs.getNumberPlayerPieces(opponent);
         if (newNumberOfOpponentPieces < minNumberOfOpponentPieces) {
-            currentPlayerMoveValue += 1;
+            currentPlayerMoveValue += 5;
         }
 
         Coord newPos = move.getEndPosition();
         for (Coord neighbor : Coordinates.getNeighbors(newPos)) {
             if (tbs.getKingPosition().distance(neighbor) == 0) {
-                currentPlayerMoveValue += 2;
+                currentPlayerMoveValue += 8;
             }
         }
 

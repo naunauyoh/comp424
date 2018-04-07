@@ -12,15 +12,15 @@ import java.util.Collections;
 import java.util.Random;
 
 /** A player file submitted by a student. */
-public class StudentPlayer extends TablutPlayer {
+public class StudentPlayer2 extends TablutPlayer {
 
     /**
      * You must modify this constructor to return your student number. This is
      * important, because this is what the code that runs the competition uses to
      * associate you with your agent. The constructor should do nothing else.
      */
-    public StudentPlayer() {
-        super("260608613");
+    public StudentPlayer2() {
+        super("260608613MINMAX");
     }
 
     /**
@@ -42,8 +42,7 @@ public class StudentPlayer extends TablutPlayer {
         int minNumberOfOpponentPieces = boardState.getNumberPlayerPieces(opponent);
         TablutMove bestMove = moves.get(rand.nextInt(moves.size()));
 
-        int alpha = -1000000;
-        int beta = 1000000;
+        int maxPlayerMoveValue = -1000000;
         int currentPlayerMoveValue = 0;
 
 
@@ -57,19 +56,19 @@ public class StudentPlayer extends TablutPlayer {
             }
             if (currentPlayer == TablutBoardState.MUSCOVITE) {
                 //OFFENSE
-                currentPlayerMoveValue = alphaBeta.getOffenseValue(cloneBS, opponent, move, minNumberOfOpponentPieces);
+                currentPlayerMoveValue = MyTools.getOffenseValue(cloneBS, opponent, move, minNumberOfOpponentPieces);
             } else {
                 // DEFENSE
                 Coord kingPos = cloneBS.getKingPosition();
                 int minDistance = Coordinates.distanceToClosestCorner(kingPos);
-                currentPlayerMoveValue = alphaBeta.getDefenseValue(cloneBS, opponent, minDistance, minNumberOfOpponentPieces);
+                currentPlayerMoveValue = MyTools.getDefenseValue(cloneBS, opponent, minDistance, minNumberOfOpponentPieces);
             }
 
-            int maxOpponentMoveValue = alphaBeta.ValueNextOneStepMinMaxMove(cloneBS,0, currentPlayerMoveValue, alpha, beta, false);
-            //int maxOpponentMoveValue = MyTools.ValueNextOneStepMinMaxMove(cloneBS);
+            //int maxOpponentMoveValue= alphaBeta.ValueNextOneStepMinMaxMove(cloneBS,0, currentPlayerMoveValue, maxPlayerMoveValue, 1000000, false);
+            int maxOpponentMoveValue= MyTools.ValueNextOneStepMinMaxMove(cloneBS);
 
-            if (alpha < maxOpponentMoveValue) {
-                alpha = maxOpponentMoveValue;
+            if (maxPlayerMoveValue < currentPlayerMoveValue - maxOpponentMoveValue) {
+                maxPlayerMoveValue = currentPlayerMoveValue - maxOpponentMoveValue;
                 bestMove = move;
             }
         }

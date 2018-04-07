@@ -52,7 +52,7 @@ public class Autoplay {
             client1_pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
 
             ProcessBuilder client2_pb = new ProcessBuilder("java", "-cp", "bin",
-                    "boardgame.Client", "tablut.RandomTablutPlayer");
+                    "boardgame.Client", "student_player.StudentPlayer2");
             client2_pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
 
             for (int i = 0; i < n_games; i++) {
