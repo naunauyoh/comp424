@@ -29,7 +29,7 @@ public class MyTools {
                 break;
             }
 
-            if (currentPlayer == tbs.MUSCOVITE) {
+            if (currentPlayer == TablutBoardState.MUSCOVITE) {
                 //OFFENSE
                 currentPlayerMoveValue = getOffenseValue(cloneBS, opponent, move, minNumberOfOpponentPieces);
             } else {

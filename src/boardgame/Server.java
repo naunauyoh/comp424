@@ -48,7 +48,7 @@ public class Server implements Runnable {
     protected static final String VERSION = "0.08";
     protected static final int DEFAULT_PORT = 8123;
 
-    public static final int DEFAULT_TIMEOUT = 700;
+    public static final int DEFAULT_TIMEOUT = 1500;
     private static final int DEFAULT_TIMEOUT_CUSHION = 1000;
 
     public static final int FIRST_MOVE_TIMEOUT = 30000;
@@ -366,7 +366,7 @@ public class Server implements Runnable {
 
                 // Send the start messages
                 for (int i = 0; i < board.getNumberOfPlayers(); i++) {
-                    String msg = "START " + board.getNameForID(players[i].getPlayerID()) + " " + players[i].getName();
+                    String msg = "START " + board.getNameForID(players[i].getPlayerID()) + " " + (players[i].getPlayerID() == 1 ? "SWEDE" : "MUSCOVITE") + " " +  players[i].getName();
                     log(msg);
                     players[i].send(msg);
                 }

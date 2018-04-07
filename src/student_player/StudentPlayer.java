@@ -10,6 +10,8 @@ import tablut.TablutPlayer;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static student_player.MyTools.*;
+
 /** A player file submitted by a student. */
 public class StudentPlayer extends TablutPlayer {
 
@@ -32,80 +34,46 @@ public class StudentPlayer extends TablutPlayer {
         // For example, maybe you'll need to load some pre-processed best opening
         // strategies...
 
+        int currentPlayer = boardState.getTurnPlayer();
         int opponent = boardState.getOpponent();
+
         Random rand = new Random(1818); // Karl Marx birth year (the seeds you used are all related to some revolution right?)
         ArrayList<TablutMove> moves = boardState.getAllLegalMoves();
         int minNumberOfOpponentPieces = boardState.getNumberPlayerPieces(opponent);
         TablutMove bestMove = moves.get(rand.nextInt(moves.size()));
-        boolean moveCaptures = false;
+
+        int maxPlayerMoveValue = -1000000;
+        int currentPlayerMoveValue = 0;
 
 
-        if(boardState.getTurnPlayer() == TablutBoardState.MUSCOVITE){
-            // Offensive (greedy like)
-            for (TablutMove move : moves) {
-                // To evaluate a move, clone the boardState so that we can do modifications on
-                // it.
-                TablutBoardState cloneBS = (TablutBoardState) boardState.clone();
+        for(TablutMove move : moves){
+            TablutBoardState cloneBS = (TablutBoardState) boardState.clone();
+            cloneBS.processMove(move);
 
-                // Process that move, as if we actually made it happen.
-                cloneBS.processMove(move);
-
-                if (cloneBS.getWinner() == player_id) {
-                    bestMove = move;
-                    moveCaptures = true;
-                    break;
-                }
-
-                int opponentMoveValue = MyTools.ValueNextOneStepMinMaxMove(cloneBS);
-
-
-
-            }
-            return bestMove;
-
-        } else {
-            //defensive (less greedy)
-
-            Coord kingPos = boardState.getKingPosition();
-
-            // Don't do a move if it wouldn't get us closer than our current position.
-            int minDistance = Coordinates.distanceToClosestCorner(kingPos);
-
-            // Iterate over moves from a specific position, the king's position!
-            for (TablutMove move : boardState.getLegalMovesForPosition(kingPos)) {
-                /*
-                 * Here it is not necessary to actually process the move on a copied boardState.
-                 * Note that it is more efficient NOT to copy the boardState. Consider this
-                 * during implementation...
-                 */
-                int moveDistance = Coordinates.distanceToClosestCorner(move.getEndPosition());
-                if (moveDistance < minDistance) {
-                    minDistance = moveDistance;
-                    bestMove = move;
-                }
+            if (cloneBS.getWinner() == currentPlayer) {
+                bestMove = move;
+                break;
             }
 
-            for (TablutMove move : moves) {
-                TablutBoardState cloneBS = (TablutBoardState) boardState.clone();
-                cloneBS.processMove(move);
+            if (currentPlayer == TablutBoardState.MUSCOVITE) {
+                //OFFENSE
+                currentPlayerMoveValue = getOffenseValue(cloneBS, opponent, move, minNumberOfOpponentPieces);
+            } else {
+                // DEFENSE
+                Coord kingPos = cloneBS.getKingPosition();
+                int minDistance = Coordinates.distanceToClosestCorner(kingPos);
+                currentPlayerMoveValue = getDefenseValue(cloneBS, opponent, minDistance, minNumberOfOpponentPieces);
+            }
 
-                if (cloneBS.getWinner() == player_id) {
-                    bestMove = move;
-                    moveCaptures = true;
-                    break;
-                }
+            int maxOpponentMoveValue= MyTools.ValueNextOneStepMinMaxMove(cloneBS);
+
+            if (maxPlayerMoveValue < currentPlayerMoveValue - maxOpponentMoveValue) {
+                maxPlayerMoveValue = currentPlayerMoveValue - maxOpponentMoveValue;
+                bestMove = move;
             }
         }
 
-
-
-
-
-
-        // Is random the best you can do? Well... yes :D
-        Move myMove = boardState.getRandomMove();
-
         // Return your move to be processed by the server.
-        return myMove;
+        return bestMove;
     }
 }
